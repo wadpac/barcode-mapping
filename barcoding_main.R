@@ -1,4 +1,5 @@
 # rm(list=ls())
+# graphics.off()
 # barcoding script Xinhui Wang, Vumc 02-02-2020
 library(acc)
 library(pawacc)
