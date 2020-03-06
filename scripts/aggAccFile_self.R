@@ -1,6 +1,5 @@
 # with this function, could treanfer the epcoh 2 as epoch 15
-aggAccFile_self<-function (object, by, which = "counts", x = NULL, keep.error = FALSE) 
-{
+aggAccFile_self<-function (object, by, which = "counts", x = NULL, keep.error = FALSE){
   info <- object$info
   sparse <- attr(object, "sparse")
   if (info$epoch > by) 
@@ -10,8 +9,7 @@ aggAccFile_self<-function (object, by, which = "counts", x = NULL, keep.error = 
   if (sparse) {
     Data <- as.data.frame(as.matrix(object$df))
     colnames(Data) <- attr(object, "labels")
-  }
-  else {
+  } else {
     Data <- object$df
   }
   if (is.null(x)) {
@@ -24,8 +22,7 @@ aggAccFile_self<-function (object, by, which = "counts", x = NULL, keep.error = 
       x <- Data[, which]
       err <- paste("error", substr(which, 1, 1), sep = "_")
       err <- Data[, err]
-    }
-    else if ("gt3x" %in% class(object)) {
+    } else if ("gt3x" %in% class(object)) {
       if (!which %in% nn) 
         stop(cat("Argument 'which' must be one of", nn, 
                  "\n"))

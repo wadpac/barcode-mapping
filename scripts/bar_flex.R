@@ -1,5 +1,5 @@
 # rewrite teh sequencing
-bar_flex<- function(bouts_values,bouts_lengths,f){
+bar_flex<- function(bouts_values,bouts_lengths,f, bts){
   
   
   dff<- df_generation(bouts_values,bouts_lengths)

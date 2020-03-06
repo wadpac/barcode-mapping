@@ -1,5 +1,5 @@
 # new sequencing
-bouts_length_filter <- function(seqss, timeline, file_name, epoch, validdays, mimwear){
+bouts_length_filter <- function(seqss, timeline, file_name, epoch, validdays, mimwear, value, bts){
   
   x<- seqss
   vl <- length(value)
@@ -69,7 +69,7 @@ bouts_length_filter <- function(seqss, timeline, file_name, epoch, validdays, mi
       bb<- tor_flex_below(bb$values,bb$lengths,2,10*f,10*f*3,f)
       bb<- tor_flex_below(bb$values,bb$lengths,2,5*f,10*f,f)
       #all1=bb$lengths[bb$values==5]all1=bb$lengths[bb$values==5]
-      barcode_calculation=bar_flex(bb$values,bb$lengths,f)
+      barcode_calculation=bar_flex(bb$values,bb$lengths,f, bts)
       sub_length<- bb$lengths
       sub_barcode<- barcode_calculation
       long_barcoding=c(long_barcoding,sub_barcode)
