@@ -1,5 +1,5 @@
 # rm(list=ls())
-# barcoding script Xinhui Wang, Vumc 02-02-2020 xinhui_wang@hotmail.com
+# barcoding script Xinhui Wang, Vumc 02-02-2020
 library(acc)
 library(pawacc)
 library(foreign)
@@ -20,7 +20,7 @@ setwd(path)
 # source all R script in the script folder:
 dirR = paste0(path,"/scripts")
 for (i in dir(dirR, full.names = T)) source(i)
-# specify data location
+# specify data location?
 path_input = paste0(path, "/input")
 file_list <- list.files("./input/", pattern ="*.csv", all.files = FALSE)
 # Generate the sequence maps:
