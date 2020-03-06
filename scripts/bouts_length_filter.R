@@ -1,7 +1,7 @@
 # new sequencing
-bouts_length_filter <- function(seqss, timeline, file_name, epoch, validdays, mimwear, value, bts){
-  
-  x<- seqss
+bouts_length_filter <- function(seqss, timeline, file_name, 
+                                epoch, validdays, mimwear, value, bts){
+  x <- seqss
   vl <- length(value)
   collapse.factor=substring(timeline,1, 10)
   ucf <- unique(collapse.factor)
@@ -31,9 +31,7 @@ bouts_length_filter <- function(seqss, timeline, file_name, epoch, validdays, mi
   for (j in 1:nucf) {
     
     x.sub <- x[collapse.factor == ucf[j]]
-    
     z <- findInterval(x.sub, vec = value/f, all.inside = F)
-    
     bouts <- rle(z)
     
     wertime=length(x.sub)
@@ -59,6 +57,7 @@ bouts_length_filter <- function(seqss, timeline, file_name, epoch, validdays, mi
       # bb<- tor(bb$values,bb$lengths,5,tolerance*3,10*f*3)
       # bb<- tor(bb$values,bb$lengths,5,tolerance,10*f)
       #bb<- tor(bb$values,bb$lengths,5,tolerance/2,5*f)
+
       bb<- tor_flex_constant(tt1,tt2,4,10*f*3,10*f*6,f)
       bb<- tor_flex_constant(bb$values,bb$lengths,4,10*f,10*f*3,f)
       bb<- tor_flex_constant(bb$values,bb$lengths,4,5*f,10*f,f)
@@ -78,18 +77,16 @@ bouts_length_filter <- function(seqss, timeline, file_name, epoch, validdays, mi
       short_barcoding_length=shorting.barcode( short_barcoding_length,sub_length)
       l2<- l2+length(barcode_calculation)
     }
-    if(length(long_barcoding)==0)
-    {
+    if(length(long_barcoding)==0) {
       long_barcoding=0
       long_barcoding_length=0
     }
   }
   
-  if(length(ucfs)>0){
+  if (length(ucfs)>0) {
     row.names(short_barcoding)=paste(file_name,ucfs,sep="_")
     row.names( short_barcoding_length)=paste(file_name,ucfs,sep="_")
   }
-  
   result<- list(days=days,l1=l1,l2=l2,vd=vd,long_barcoding=long_barcoding,short_barcoding=short_barcoding,long_barcoding_length=long_barcoding_length,short_barcoding_length=short_barcoding_length)
   return(result)
 }
