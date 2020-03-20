@@ -4,45 +4,40 @@
 #' @param bouts_lengths ...
 #' @return df
 #' @export
-df_generation<- function(bouts_values,bouts_lengths){
-  #
-  zz= c(0,rep(c(1,2,3),5),rep(4,5),rep(5,5),rep(6,5))
-  yy=c(1,rep(1,3),rep(2,3),rep(3,3),rep(4,3),rep(5,3),rep(c(1,2,3,4,5),3))
-  df <- data.frame(Z=zz,Y=yy,A=0:30)
-  Z=bouts_values
-  Y=bouts_lengths
-  df$A <- NA # Empty out A
-  # Re-create A
-  df$A[df$Z == 0 & df$Y == 1] <- 0
-  df$A[df$Z == 0 & df$Y == 2] <- 0
-  df$A[df$Z == 0 & df$Y == 3] <- 0
-  df$A[df$Z == 0 & df$Y == 4] <- 0
+df_generation<- function(bouts_values, bouts_lengths){
+  df <- data.frame(bvalue = bouts_values,
+                   blength = bouts_lengths,
+                   code = rep(NA,length(bouts_lengths)))
+
+  df$code[df$bvalue == 0 & df$blength == 1] <- 0
+  df$code[df$bvalue == 0 & df$blength == 2] <- 0
+  df$code[df$bvalue == 0 & df$blength == 3] <- 0
+  df$code[df$bvalue == 0 & df$blength == 4] <- 0
   
-  df$A[df$Z == 1 & df$Y == 1] <- 3
-  df$A[df$Z == 1 & df$Y == 2] <- 3
-  df$A[df$Z == 1 & df$Y == 3] <-2
-  df$A[df$Z == 1 & df$Y == 4] <- 1
+  df$code[df$bvalue == 1 & df$blength == 1] <- 3
+  df$code[df$bvalue == 1 & df$blength == 2] <- 3
+  df$code[df$bvalue == 1 & df$blength == 3] <- 2
+  df$code[df$bvalue == 1 & df$blength == 4] <- 1
   
-  df$A[df$Z == 2 & df$Y == 1] <- 4
-  df$A[df$Z == 2 & df$Y == 2] <- 4
-  df$A[df$Z == 2 & df$Y == 3] <-5
-  df$A[df$Z == 2 & df$Y == 4] <- 6
+  df$code[df$bvalue == 2 & df$blength == 1] <- 4
+  df$code[df$bvalue == 2 & df$blength == 2] <- 4
+  df$code[df$bvalue == 2 & df$blength == 3] <- 5
+  df$code[df$bvalue == 2 & df$blength == 4] <- 6
   
-  df$A[df$Z == 3 & df$Y == 1] <- 7
-  df$A[df$Z == 3 & df$Y == 2] <- 8
-  df$A[df$Z == 3 & df$Y == 3] <- 9
-  df$A[df$Z == 3 & df$Y == 4] <- 9
+  df$code[df$bvalue == 3 & df$blength == 1] <- 7
+  df$code[df$bvalue == 3 & df$blength == 2] <- 8
+  df$code[df$bvalue == 3 & df$blength == 3] <- 9
+  df$code[df$bvalue == 3 & df$blength == 4] <- 9
   
-  df$A[df$Z == 4 & df$Y == 1] <- 10
-  df$A[df$Z == 4 & df$Y == 2] <- 11
-  df$A[df$Z == 4 & df$Y ==3] <- 12
-  df$A[df$Z == 4 & df$Y ==4] <- 12
+  df$code[df$bvalue == 4 & df$blength == 1] <- 10
+  df$code[df$bvalue == 4 & df$blength == 2] <- 11
+  df$code[df$bvalue == 4 & df$blength == 3] <- 12
+  df$code[df$bvalue == 4 & df$blength == 4] <- 12
   
-  df$A[df$Z == 5 & df$Y == 1] <- 15
-  df$A[df$Z == 5 & df$Y == 2] <- 16
-  df$A[df$Z == 5 & df$Y ==3] <- 17
-  df$A[df$Z == 5 & df$Y ==4] <- 18
-  
-  df <- df[order(df$A),]
+  df$code[df$bvalue == 5 & df$blength == 1] <- 15
+  df$code[df$bvalue == 5 & df$blength == 2] <- 16
+  df$code[df$bvalue == 5 & df$blength == 3] <- 17
+  df$code[df$bvalue == 5 & df$blength == 4] <- 18
   return(df)
 }
+
