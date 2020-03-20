@@ -1,6 +1,6 @@
 library(barcodeMapping)
-context("bar_flex")
-test_that("example input gives expected output for bar_flex", {
+context("generate_barcode")
+test_that("example input gives expected output for generate_barcode", {
   bts = c(0, 5, 10, 30)
   f = 4
   # generate random test data:
@@ -17,7 +17,7 @@ test_that("example input gives expected output for bar_flex", {
   S[which(LR >= 0 & LR < 0.1), 5] = 1 # vigorous
   ranone = function(x) sample(which(x == 1),1)
   bouts_values = apply(S,1,ranone)
-  # feed data to bar_flex:
-  test = bar_flex(bouts_values,bouts_lengths,f, bts)
+  # feed data to generate_barcode:
+  test = generate_barcode(bouts_values,bouts_lengths,f, bts)
   expect_equal(round(mean(test),digits=4),7.0241)
 })

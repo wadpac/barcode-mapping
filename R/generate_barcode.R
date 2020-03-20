@@ -1,14 +1,26 @@
-#' df_generation
+#' bar_flex
 #'
 #' @param bouts_values ...
 #' @param bouts_lengths ...
-#' @return df
+#' @param f ...
+#' @param bts ...
+#' @return barcodes
 #' @export
-df_generation<- function(bouts_values, bouts_lengths){
+
+# rewrite teh sequencing
+generate_barcode<- function(bouts_values,bouts_lengths,f, bts){
+  BLcopy = bouts_lengths
+  btss=bts*f # probably better to simply ask for btss as input
+  # change lengths to 1 of 4 classes:
+  bouts_lengths[which(BLcopy >= btss[1] & BLcopy < btss[2])] = 1
+  bouts_lengths[which(BLcopy >= btss[2] & BLcopy < btss[3])] = 2
+  bouts_lengths[which(BLcopy >= btss[3] & BLcopy < btss[4])] = 3
+  bouts_lengths[which(BLcopy >= btss[4])] = 4
+  # generate barcodes
   df <- data.frame(bvalue = bouts_values,
                    blength = bouts_lengths,
                    code = rep(NA,length(bouts_lengths)))
-
+  
   df$code[df$bvalue == 0 & df$blength == 1] <- 0
   df$code[df$bvalue == 0 & df$blength == 2] <- 0
   df$code[df$bvalue == 0 & df$blength == 3] <- 0
@@ -38,6 +50,10 @@ df_generation<- function(bouts_values, bouts_lengths){
   df$code[df$bvalue == 5 & df$blength == 2] <- 16
   df$code[df$bvalue == 5 & df$blength == 3] <- 17
   df$code[df$bvalue == 5 & df$blength == 4] <- 18
-  return(df)
+  
+  
+  # reformat barcodes to be time series
+  barcodes= rep(df$code, times = BLcopy)
+  return(barcodes)
 }
 
