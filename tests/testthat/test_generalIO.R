@@ -19,5 +19,6 @@ test_that("example input gives expected output for generate_barcode", {
   bouts_values = apply(S,1,ranone)
   # feed data to generate_barcode:
   test = generate_barcode(bouts_values,bouts_lengths,f, bts)
-  expect_equal(round(mean(test),digits=4),7.0241)
+  expect_equal(sum(test),3305)
+  expect_equal(length(test),369)
 })
