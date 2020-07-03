@@ -9,7 +9,8 @@ Maintainer: Vincent T van Hees <vincentvanhees@gmail.com>
 Description: For processesing mobile and wearable sensor data generated in the sleepsight study.
 URL: https://github.com/wadpac/barcode-mapping
 License: Apache License version 2.0 | file LICENSE
-Depends: stats, utils, R (>= 3.5.2)
+Suggests: testthat
+Depends: stats, utils, R (>= 3.5)
 NeedsCompilation: no
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
