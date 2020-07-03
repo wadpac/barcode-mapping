@@ -4,12 +4,12 @@
 \alias{shorting.barcode}
 \title{shorting.barcode}
 \usage{
-shorting.barcode(short_barcoding, sub_barcode)
+shorting.barcode(short_barcoding, barcode_per_day)
 }
 \arguments{
 \item{short_barcoding}{...}
 
-\item{sub_barcode}{...}
+\item{barcode_per_day}{...}
 }
 \value{
 short_barcoding
