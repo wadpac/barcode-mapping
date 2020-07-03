@@ -11,6 +11,6 @@ long.barcode<-function(short_barcoding,sub_barcode){
   tt=rep(NA,10080)
   if (length(sub_barcode)>10080){tt=sub_barcode[1:10080]}
   else{tt[1:length(sub_barcode)]=sub_barcode}
-  short_barcoding=rbind(short_barcoding,tt)  
+  short_barcoding=rbind(short_barcoding,tt)
   return(short_barcoding)
 }

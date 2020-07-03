@@ -7,7 +7,7 @@
 
 # get the new sequciencing of every day
 shorting.barcode<-function(short_barcoding, barcode_per_day){
-  # the trick.we assume the new sequencing is less than 1440. 
+  # the trick.we assume the new sequencing is less than 1440.
   # Actually, it shoud be as 1440*f in worst case. However, 1440 is far far enough
   tt=rep(NA,1440)
   if (length(barcode_per_day) > 1440) {
@@ -16,7 +16,7 @@ shorting.barcode<-function(short_barcoding, barcode_per_day){
     tt[1:length(barcode_per_day)] = barcode_per_day
   }
   if (is.null(short_barcoding) == FALSE) {
-    short_barcoding = rbind(short_barcoding, tt)  
+    short_barcoding = rbind(short_barcoding, tt)
   } else {
     short_barcoding = tt
   }

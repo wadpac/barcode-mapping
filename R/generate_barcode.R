@@ -8,9 +8,9 @@
 #' @export
 
 # rewrite teh sequencing
-generate_barcode<- function(bouts_values,bouts_lengths,f, bts){
+generate_barcode <- function(bouts_values, bouts_lengths, f, bts) {
   BLcopy = bouts_lengths
-  btss=bts*f # probably better to simply ask for btss as input
+  btss = bts * f # probably better to simply ask for btss as input
   # change lengths to 1 of 4 classes:
   bouts_lengths[which(BLcopy >= btss[1] & BLcopy < btss[2])] = 1
   bouts_lengths[which(BLcopy >= btss[2] & BLcopy < btss[3])] = 2
@@ -19,7 +19,7 @@ generate_barcode<- function(bouts_values,bouts_lengths,f, bts){
   # generate barcodes
   df <- data.frame(bvalue = bouts_values,
                    blength = bouts_lengths,
-                   code = rep(NA,length(bouts_lengths)))
+                   code = rep(NA, length(bouts_lengths)))
   
   df$code[df$bvalue == 0 & df$blength == 1] <- 0
   df$code[df$bvalue == 0 & df$blength == 2] <- 0
@@ -53,15 +53,15 @@ generate_barcode<- function(bouts_values,bouts_lengths,f, bts){
   
   # Note: df$code is directly used as barcode, but this is not described in the paper.
   # We only know this from  talking to first author:
-  barcodes= df$code 
+  barcodes = df$code
   rm(df)
   cnt = 1
   while(cnt > 0){
-    if (barcodes[cnt] == barcodes[cnt+1]) {
-      barcodes = barcodes[-cnt] # remove succeeding duplicate
-    }
+    if (barcodes[cnt] == barcodes[cnt + 1])
+        barcodes = barcodes[-cnt] # remove succeeding duplicate
     cnt = cnt + 1
-    if (cnt+1 > length(barcodes)) break()
+    if (cnt + 1 > length(barcodes))
+        break()
   }
   
   # Old code provided by Xinhui (updated with new object names in this function)
