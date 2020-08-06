@@ -21,35 +21,36 @@ generate_barcode <- function(bouts_values, bouts_lengths, f, bts) {
                    blength = bouts_lengths,
                    code = rep(NA, length(bouts_lengths)))
   
+  # Non-wear
   df$code[df$bvalue == 0 & df$blength == 1] <- 0
   df$code[df$bvalue == 0 & df$blength == 2] <- 0
   df$code[df$bvalue == 0 & df$blength == 3] <- 0
   df$code[df$bvalue == 0 & df$blength == 4] <- 0
-  
-  df$code[df$bvalue == 1 & df$blength == 1] <- 3
-  df$code[df$bvalue == 1 & df$blength == 2] <- 3
-  df$code[df$bvalue == 1 & df$blength == 3] <- 2
-  df$code[df$bvalue == 1 & df$blength == 4] <- 1
-  
-  df$code[df$bvalue == 2 & df$blength == 1] <- 4
+  # SB
+  df$code[df$bvalue == 1 & df$blength == 1] <- 3 # 0 - 5 minutes
+  df$code[df$bvalue == 1 & df$blength == 2] <- 3 # 5 - 10 minutes
+  df$code[df$bvalue == 1 & df$blength == 3] <- 2 # 10 - 30 minutes
+  df$code[df$bvalue == 1 & df$blength == 4] <- 1 # > 30 minutes
+  # light
+  df$code[df$bvalue == 2 & df$blength == 1] <- 4 # note that order of symbols changes relative to SB
   df$code[df$bvalue == 2 & df$blength == 2] <- 4
   df$code[df$bvalue == 2 & df$blength == 3] <- 5
   df$code[df$bvalue == 2 & df$blength == 4] <- 6
-  
+  # moderate
   df$code[df$bvalue == 3 & df$blength == 1] <- 7
   df$code[df$bvalue == 3 & df$blength == 2] <- 8
   df$code[df$bvalue == 3 & df$blength == 3] <- 9
   df$code[df$bvalue == 3 & df$blength == 4] <- 9
-  
+  # vigorous
   df$code[df$bvalue == 4 & df$blength == 1] <- 10
   df$code[df$bvalue == 4 & df$blength == 2] <- 11
   df$code[df$bvalue == 4 & df$blength == 3] <- 12
   df$code[df$bvalue == 4 & df$blength == 4] <- 12
   
-  df$code[df$bvalue == 5 & df$blength == 1] <- 15
-  df$code[df$bvalue == 5 & df$blength == 2] <- 16
-  df$code[df$bvalue == 5 & df$blength == 3] <- 17
-  df$code[df$bvalue == 5 & df$blength == 4] <- 18
+  # df$code[df$bvalue == 5 & df$blength == 1] <- 15
+  # df$code[df$bvalue == 5 & df$blength == 2] <- 16
+  # df$code[df$bvalue == 5 & df$blength == 3] <- 17
+  # df$code[df$bvalue == 5 & df$blength == 4] <- 18
   
   # Note: df$code is directly used as barcode, but this is not described in the paper.
   # We only know this from  talking to first author:
